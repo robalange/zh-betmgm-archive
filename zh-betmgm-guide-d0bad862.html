@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>betmgm 知识库 · 简明指南与访问提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f6f9fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1a2634;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 3rem;
+      min-height: 100vh;
+    }
+
+    .page-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* 页头 */
+    .header {
+      margin-bottom: 2.5rem;
+      border-bottom: 3px solid #1c8e7a;
+      padding-bottom: 1rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0f2c2a;
+    }
+
+    .header h1 span {
+      color: #1c8e7a;
+    }
+
+    .header .tagline {
+      font-size: 0.9rem;
+      color: #3d5a5a;
+      background: #e3f1ee;
+      padding: 0.2rem 0.9rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* 目录感网格 */
+    .directory-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .directory-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .directory-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 8px 20px rgba(13, 82, 70, 0.06);
+      border: 1px solid #ddebe7;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(13, 82, 70, 0.12);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #0a2a25;
+    }
+
+    .card h2 i {
+      color: #1c8e7a;
+      font-style: normal;
+      font-size: 1.3rem;
+    }
+
+    .card p,
+    .card li {
+      font-size: 0.95rem;
+      color: #2a3f3c;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      padding: 0.3rem 0 0.3rem 1.1rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      color: #1c8e7a;
+      font-weight: 600;
+      position: absolute;
+      left: 0;
+    }
+
+    .card .badge {
+      display: inline-block;
+      background: #daf0ea;
+      color: #0f4c43;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+      letter-spacing: 0.02em;
+      margin-top: 0.4rem;
+    }
+
+    /* 说明区 / 提示区 整合为双列 */
+    .insight-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .insight-row {
+        grid-template-columns: 1.4fr 1fr;
+      }
+    }
+
+    .insight-box {
+      background: #f0f8f5;
+      border-radius: 24px;
+      padding: 1.6rem 1.5rem;
+      border-left: 5px solid #1c8e7a;
+    }
+
+    .insight-box h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0a2a25;
+      margin-bottom: 0.6rem;
+    }
+
+    .insight-box p {
+      font-size: 0.94rem;
+      color: #1e3d38;
+      margin-bottom: 0.5rem;
+    }
+
+    .insight-box .note {
+      background: rgba(28, 142, 122, 0.08);
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      margin-top: 0.8rem;
+      font-size: 0.88rem;
+    }
+
+    .alert-card {
+      background: #fefaf0;
+      border-radius: 24px;
+      padding: 1.6rem 1.5rem;
+      border: 1px solid #eadfcb;
+    }
+
+    .alert-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #7d5d2e;
+      margin-bottom: 0.6rem;
+    }
+
+    .alert-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .alert-card ul li {
+      padding: 0.35rem 0 0.35rem 1.3rem;
+      position: relative;
+      font-size: 0.92rem;
+      color: #4f3e24;
+    }
+
+    .alert-card ul li::before {
+      content: "⚠️";
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+
+    /* 相关信息区 */
+    .info-section {
+      background: #ffffff;
+      border-radius: 26px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid #d5e3de;
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.5rem;
+    }
+
+    .info-section .info-col {
+      flex: 1 1 180px;
+    }
+
+    .info-section h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #1c8e7a;
+      margin-bottom: 0.6rem;
+      border-bottom: 1px dashed #bcd9d2;
+      padding-bottom: 0.3rem;
+    }
+
+    .info-section p,
+    .info-section a {
+      font-size: 0.92rem;
+      color: #2a4440;
+    }
+
+    .info-section a {
+      color: #0a5e50;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #aacec4;
+      font-weight: 500;
+    }
+
+    .info-section a:hover {
+      text-decoration-color: #1c8e7a;
+      color: #08382e;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 540px) {
+      .faq-mini {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #dae7e2;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #0a3a32;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #3a5650;
+    }
+
+    /* 底部 */
+    .footer-note {
+      border-top: 1px solid #cbdcd6;
+      padding-top: 1.6rem;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #4e6a64;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+    }
+
+    .footer-note a {
+      color: #1c8e7a;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    .footer-note a:hover {
+      color: #0b5244;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #bcd9d2, transparent);
+      margin: 1.2rem 0;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <!-- 页头 -->
+  <header class="header">
+    <h1>📚 <span>betmgm</span> 知识库</h1>
+    <span class="tagline">简明指南 · 访问提醒</span>
+  </header>
+
+  <!-- 目录感网格：三个卡片 -->
+  <div class="directory-grid">
+    <div class="card">
+      <h2><i>📋</i> 平台概览</h2>
+      <p><a href="https://zh-betmgm.com" style="color:#1c8e7a;font-weight:600;text-decoration:underline;">betmgm</a> 面向中文用户提供体育赛事与娱乐内容的综合性信息入口，涵盖赛事数据、玩法说明与账户管理模块。平台结构清晰，适合快速检索常用功能。</p>
+      <ul>
+        <li>多语言界面，中文支持完善</li>
+        <li>实时数据与统计看板</li>
+        <li>账户安全与隐私保护指引</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><i>⚙️</i> 使用要点</h2>
+      <ul>
+        <li>首次使用建议完成身份验证流程</li>
+        <li>支付渠道支持本地化选项</li>
+        <li>客服时段及工单响应说明</li>
+        <li>内容区域按体育类型分类</li>
+      </ul>
+      <span class="badge">常用操作</span>
+    </div>
+
+    <div class="card">
+      <h2><i>🔍</i> 场景指引</h2>
+      <p>关注赛事动态的用户可查阅当日赛程与历史对比；初次接触的新手可从「帮助中心」获取术语解释。如需调整账户偏好，在设置页内可管理通知与隐私选项。</p>
+      <span class="badge">新手指南</span>
+    </div>
+  </div>
+
+  <!-- 说明区 + 提示区 -->
+  <div class="insight-row">
+    <div class="insight-box">
+      <h3>📌 访问说明</h3>
+      <p>推荐通过最新版浏览器访问 <a href="https://zh-betmgm.com" style="color:#0a5e50;font-weight:500;">betmgm</a>，确保页面样式与交互功能完整呈现。平台使用标准加密连接，建议在私人网络环境下操作账户相关流程。</p>
+      <div class="note">
+        💡 部分内容可能因地区政策调整显示范围，请以实际页面为准。功能更新会通过公告栏通知。
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <h3>🔔 提醒事项</h3>
+      <ul>
+        <li>定期修改登录密码，启用双重验证</li>
+        <li>勿向第三方透露账户凭证</li>
+        <li>未成年人不得使用平台服务</li>
+        <li>如遇异常登录提示，立即联系客服</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 相关信息区 -->
+  <div class="info-section">
+    <div class="info-col">
+      <h4>⚡ 常用链接</h4>
+      <p><a href="https://zh-betmgm.com">betmgm</a> · 帮助中心 · 条款说明</p>
+    </div>
+    <div class="info-col">
+      <h4>📅 更新日志</h4>
+      <p>界面优化 · 数据模块扩展 · 2025年第一季度</p>
+    </div>
+    <div class="info-col">
+      <h4>🔒 安全参考</h4>
+      <p>传输加密 · 隐私政策 · 数据本地化</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <h3 style="font-weight:600; font-size:1.1rem; color:#0a2a25; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.4rem;">
+    ❓ 常见疑问摘要
+  </h3>
+  <div class="faq-mini">
+    <div class="faq-item">
+      <strong>如何快速查找赛事？</strong>
+      <p>在首页顶部搜索栏输入联盟或队伍名称，也可按体育分类浏览。</p>
+    </div>
+    <div class="faq-item">
+      <strong>账户注册需要哪些信息？</strong>
+      <p>提供有效邮箱、手机号并完成实名验证，具体步骤参考注册页引导。</p>
+    </div>
+    <div class="faq-item">
+      <strong>支付方式是否支持本地货币？</strong>
+      <p>支持多种本地化支付渠道，结算汇率以页面即时显示为准。</p>
+    </div>
+    <div class="faq-item">
+      <strong>遇到页面加载问题怎么办？</strong>
+      <p>先检查网络连接，或尝试清除浏览器缓存。若持续异常，可联系在线客服。</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    <span>内容仅作信息参考，不构成操作建议。</span>
+    <span>访问 <a href="https://zh-betmgm.com">betmgm</a> 以获得完整功能。</span>
+  </div>
+</div>
+</body>
+</html>
